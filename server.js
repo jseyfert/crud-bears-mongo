@@ -24,7 +24,7 @@ router.route('/bears')//.post()  we could also add it like this if we werent cha
     .post(function(req, res) {
 
     	// res.json({title: "I just made a post!"}); *TEST*
-        
+
         var bear = new Bear();      // create a new instance of the Bear model
         bear.name = req.body.name;  // set the bears name (comes from the request)
         bear.age = req.body.age; 
@@ -34,20 +34,39 @@ router.route('/bears')//.post()  we could also add it like this if we werent cha
 
         // save the bear and check for errors
         bear.save(function(err, bear) {
-            if (err) {
-                res.json(err);
-            } else {
-            	res.json(bear);}
+        	if (err) {
+        		res.json(err);
+        	} else {
+        		res.json(bear);
+        	}
         });
-        
+    })
+
+    // get bear from DB
+    .get(function(req, res) {
+    	Bear.find(function(err, bears) {
+    		if (err) {
+    			console.log(err);
+    		} else {
+    			res.json(bears);
+    		}
+    	});
     });
 
-// router.get('/', function(req, res) {
-// 	res.json({message: 'Welcome to my API on PORT ' + port });
-// });
+router.route('/bears/:bear_id')
+
+	.get(function(req, res) {
+		Bear.findById(req.params.bear_id, function(err, bear) {
+			if (err) {
+				console.log(err);
+			} else {
+				res.json(bear);
+			}
+		});
+	});
+
 
 app.use('/api', router);
 
 app.listen(port);
 console.log('There server is on PORT ' + port);
-
