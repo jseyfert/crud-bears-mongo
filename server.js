@@ -64,6 +64,7 @@ router.route('/bears/:bear_id')
 			if (err) {
 				res.json(err);
 			} else {
+
 				bear.name = req.body.name ? req.body.name : bear.name;
 				bear.age = req.body.age ? req.body.age : bear.age;
 				bear.gender = req.body.gender ? req.body.gender : bear.gender;
@@ -77,10 +78,18 @@ router.route('/bears/:bear_id')
 				});	
 			}
 		});
+	})
+
+	.delete(function(req, res) { //delete bear by specific id
+			// console.log(req.body.name);
+		Bear.remove({_id: req.params.bear_id}, function(err, bear) {
+			if (err) {
+				res.json(err);
+			} else {
+				res.json("Da bear is gone!");
+			}
+		});
 	});
-
-
-
 
 app.use('/api', router);
 
