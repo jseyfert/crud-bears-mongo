@@ -11,7 +11,6 @@ router.route('/bears')//.post()  we could also add it like this if we werent cha
         bear.name = req.body.name;  // set the bears name (comes from the request)
         bear.age = req.body.age; 
         bear.gender = req.body.gender; 	
-                
         bear.save(function(err, bear) { // save the bear and check for errors
         	if (err) {
         		res.json(err);

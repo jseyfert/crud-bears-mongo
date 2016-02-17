@@ -18,8 +18,19 @@ app.get('/', function(req, res){
 });
 
 app.get('/about', function(req, res){
-	res.render('indexAbout', {date: new Date()});
+	res.render('about', {time: new Date()});
 });
+
+app.get('/bears', function(req, res){
+	Bear.find(function(err, bears) {
+    		if (err) {
+    			res.json(err);
+    		} else {
+    			res.render('bears', {bearList: bears});
+    		} 
+    	});
+});
+
 
 var port = process.env.PORT || 8080;
 

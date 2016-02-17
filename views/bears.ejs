@@ -14,14 +14,39 @@
 		<div class="row">
 			<div class="jumbotron">
 				<div class="container">
-					<h1>HOME PAGE</h1>
+					<h1>BEARS</h1>
 						<a href="/" class="btn btn-primary btn-lg">Home</a>
 						<a href="/about" class="btn btn-primary btn-lg">About</a>
 						<a href="/bears" class="btn btn-primary btn-lg">Bears</a>
-						<h2> <%= title %> </h2>
 					</p>
 				</div>
 			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<table class="table table-hover">
+				<thead>
+						<!-- <h2> <%= bearList %> </h2> -->
+					<tr>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Gender</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (var i = 0; i < bearList.length; i++) { %>
+						<tr>
+							<td><%= bearList[i].name %></td>
+							<td><%= bearList[i].age %></td>
+							<td><%= bearList[i].gender %></td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </section>
