@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var Bear = require('./app/models/bears');
+var Bear = require('./models/bears');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/animals');
@@ -10,6 +10,8 @@ var bearRouter = require('./routes/bears');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 
@@ -20,6 +22,13 @@ app.get('/', function(req, res){
 app.get('/about', function(req, res){
 	res.render('about', {time: new Date()});
 });
+
+// app.post('/addBear', function(req, res){
+// 	console.log('Username: ' + req.body.username);
+// 	console.log('Password: ' + req.body.password);
+
+// 	 // res.render('addBear', {time: new Date()});
+// });
 
 app.get('/bears', function(req, res){
 	Bear.find(function(err, bears) {

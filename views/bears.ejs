@@ -18,12 +18,14 @@
 						<a href="/" class="btn btn-primary btn-lg">Home</a>
 						<a href="/about" class="btn btn-primary btn-lg">About</a>
 						<a href="/bears" class="btn btn-primary btn-lg">Bears</a>
+
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
 
 <section>
 	<div class="container">
@@ -34,18 +36,36 @@
 						<th>Name</th>
 						<th>Age</th>
 						<th>Gender</th>
+						<th></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="bearTable">
 					<% for (var i = 0; i < bearList.length; i++) { %>
-						<tr>
+						<tr id="<%= bearList[i]._id %>">
 							<td><%= bearList[i].name %></td>
 							<td><%= bearList[i].age %></td>
 							<td><%= bearList[i].gender %></td>
+							<td><button class="killBear" type="button" class="btn btn-primary">Kill Bear</button></td>
 						</tr>
 					<% } %>
 				</tbody>
 			</table>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<label class="sr-only" for="">label</label>
+					<input type="text" name="name" class="form-control" id="name" placeholder="Name">
+					<input type="text" name="age" class="form-control" id="age" placeholder="Age">
+					<input type="text" name="gender" class="form-control" id="gender" placeholder="Gender">
+				</div>
+					<button type="submit" id="addBear" class="btn btn-primary">Birth Bear</button>
+			</form>
 		</div>
 	</div>
 </section>

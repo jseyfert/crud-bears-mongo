@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Bear = require('../app/models/bears');
+var Bear = require('../models/bears');
 
 router.route('/bears')//.post()  we could also add it like this if we werent chaining
 
@@ -56,7 +56,7 @@ router.route('/bears/:bear_id')
 					if (err) {
 						res.json(err);
 					} else {
-						res.json(bear);
+						res.json({title: 'updated'});
 					}
 				});	
 			}
@@ -69,7 +69,7 @@ router.route('/bears/:bear_id')
 			if (err) {
 				res.json(err);
 			} else {
-				res.json("Da bear is gone!");
+				res.json({title: 'deleted'});
 			}
 		});
 	});
